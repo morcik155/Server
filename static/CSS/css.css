@@ -1,0 +1,49 @@
+#hello_text {
+    position: relative;
+    cursor: pointer;
+    height: 50px;
+    width: 5%;
+    left: 45%;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: whitesmoke;
+    overflow: hidden;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a.a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Rubik', sans-serif;
+}
+.topnav a.b {
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: white;
+    color: black;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: black;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+}
