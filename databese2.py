@@ -38,7 +38,7 @@ def edit_accounts(user, password):
 
 def edit_article(name, text, files):
     data(
-        'articles' f"UPDATE articles SET text ='{text}', WHERE name = '{name}', SET files = '{files}', WHERE name = '{name}'")
+        'articles', f"UPDATE articles SET text ='{text}', WHERE name = '{name}', SET files = '{files}', WHERE name = '{name}'")
 
 
 def edit_day(class_, day, subject, text, who_reduct):
@@ -47,15 +47,15 @@ def edit_day(class_, day, subject, text, who_reduct):
 
 
 def add_account(name, password, class_):
-    data('accounts' f"INSERT INTO accounts VALUES ({name}, {password}, {class_})")
+    data('accounts', f"INSERT INTO accounts VALUES ({name}, {password}, {class_})")
 
 
 def add_article(id, name, text, files):
-    data('articles' f"INSERT INTO articles VALUES ({id}, {name}, {text}, {files})")
+    data('articles', f"INSERT INTO articles VALUES ({id}, {name}, {text}, {files})")
 
 
 def add_day(subject, text, who_reduct):
-    data('accounts' f"INSERT INTO accounts VALUES ({subject}, {text}, {who_reduct})")
+    data('accounts', f"INSERT INTO accounts VALUES ({subject}, {text}, {who_reduct})")
 
 
 def read(base, table):

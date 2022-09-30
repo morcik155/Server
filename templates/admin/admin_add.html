@@ -9,11 +9,20 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active a" href="/">Домашная страница</a>
+    <a class="a" href="/">Домашная страница</a>
     <a class="a" href="/news">Новости</a>
+    <a class="a" href="/table">Домашнее задание</a>
     <a class="a" href="/about">О нас</a>
     <a class="b" href="{{ login_h }}">{{ login_t }}</a>
-    <a class="b" href="/news/add">Добавить Новость</a>
+    <a class="b active" href="/news/add">Добавить Новость</a>
+    <a class="b" style="{{disable}}" href="/table/add">{{ text }}</a>
 </div>
+<form method="post" enctype=multipart/form-data><br>
+    <center><input style="width: 70%; height: 50px; font-size: 24px;" class="input" name="title" type="text"><br><br>
+<!--    <textarea style="width: 70%; height: 50px; font-size: 24px" class="input" name="title"></textarea><br><br>-->
+    <textarea style="width: 70%; height: 150px; font-size: 16px" class="input" name="text"></textarea><br><br>
+    <input name="file" multiple type="file"><br><br>
+    <button class="input" type="submit">Отправить</button><br><br></center>
+</form>
 </body>
 </html>

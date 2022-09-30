@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <link href="../static/CSS/css.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <div class="topnav">
@@ -15,7 +12,7 @@
     <a class="a" href="/about">О нас</a>
     <a class="b" href="{{ login_h }}">{{ login_t }}</a>
     <a class="b" href="/news/add">Добавить Новость</a>
-    <a class="b" href="/table/add">Выложить ДЗ</a>
+    <a class="b active" href="/table/add">Выложить ДЗ</a>
 </div>
 </body>
 </html>

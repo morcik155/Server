@@ -9,13 +9,15 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active a" href="/">Домашная страница</a>
-    <a class="a" href="/news">Новости</a>
+    <a class="a" href="/">Домашная страница</a>
+    <a class="a active" href="/news">Новости</a>
+    <a class="a" href="/table">Домашнее задание</a>
     <a class="a" href="/about">О нас</a>
     <a class="b" href="{{ login_h }}">{{ login_t }}</a>
+    <a class="b" href="/table/add">Выложить ДЗ</a>
 </div>
 {% for i in data %}
-<h1 style="font-family: 'Rubik', sans-serif;"><a href="/news/{{ i[0] }}"></a>{{ i[1] }}</h1>
+<h1><a class="url" href="/news/{{ i[0] }}">{{ i[1] }}</a></h1>
 {% endfor %}
 </body>
 </html>
