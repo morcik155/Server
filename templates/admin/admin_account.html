@@ -12,14 +12,16 @@
     <a class="a" href="/">Домашная страница</a>
     <a class="a" href="/news">Новости</a>
     <a class="a" href="/table">Домашнее задание</a>
-    <a class="a active" href="/about">О нас</a>
-    <a class="b" href="{{ login_h }}">{{ login_t }}</a>
+    <a class="a" href="/about">О нас</a>
+    <a class="b active" href="{{ login_h }}">{{ login_t }}</a>
     <a class="b" href="/news/add">Добавить Новость</a>
     <a class="b" style="{{disable}}" href="/table/add">{{ text }}</a>
 </div>
 <form method="post">
     <input type="hidden" name="index" value="1">
     <input type="submit" value="Выйти">
+
+
 </form>
 </body>
 </html>

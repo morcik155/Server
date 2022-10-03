@@ -14,7 +14,7 @@
     <a class="a" href="/table">Домашнее задание</a>
     <a class="a" href="/about">О нас</a>
     <a class="b" href="{{ login_h }}">{{ login_t }}</a>
-    <a class="b" href="/table/add">Выложить ДЗ</a>
+    <a class="b" style="{{disable}}" href="/table/add">{{ text }}</a>
 </div>
 {% for i in data %}
 <h1><a class="url" href="/news/{{ i[0] }}">{{ i[1] }}</a></h1>

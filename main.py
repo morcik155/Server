@@ -42,11 +42,11 @@ def main():
                 return redirect('/')
     else:
         if session['admin']:
-            return render_template('admin/admin_home.html', login_h='/account', login_t=session['name'])
+            return render_template('admin/admin_home.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
         if session['login']:
-            return render_template('home.html', login_h='/account', login_t=session['name'])
+            return render_template('home.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
         else:
-            return render_template('home.html', login_h='/login', login_t='Войти')
+            return render_template('home.html', login_h='/login', login_t='Войти', text='', disable='pointer-events: none')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -74,7 +74,7 @@ def login():
             else:
                 print(f'попытка с данными {login} и {password} не удалась')
 
-    return render_template('login.html', login_h='/login', login_t='Войти')
+    return render_template('login.html', login_h='/login', login_t='Войти', text='Выложить ДЗ', disable='')
 
 
 @app.route('/news', methods=['GET', 'POST'])
@@ -88,11 +88,11 @@ def news():
         session['class'] = False
     data = databese2.read('articles', 'articles')
     if session['admin']:
-        return render_template('admin/admin_news.html', login_h='/account', login_t=session['name'], data=data)
+        return render_template('admin/admin_news.html', login_h='/account', login_t=session['name'], data=data, text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('news.html', login_h='/account', login_t=session['name'], data=data)
+        return render_template('news.html', login_h='/account', login_t=session['name'], data=data, text='Выложить ДЗ', disable='')
     else:
-        return render_template('news.html', login_h='/login', login_t='Войти', data=data)
+        return render_template('news.html', login_h='/login', login_t='Войти', data=data, text='', disable='pointer-events: none')
 
 
 @app.route('/news/add', methods=['GET', 'POST'])
@@ -126,11 +126,11 @@ def add_news():
         databese2.add_article(t, title, text, '1')
         print(title, title, filenames)
     if session['admin']:
-        return render_template('admin/admin_add.html', login_h='/account', login_t=session['name'])
+        return render_template('admin/admin_add.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('add.html', login_h='/account', login_t=session['name'])
+        return render_template('add.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     else:
-        return render_template('add.html', login_h='/login', login_t='Войти')
+        return render_template('add.html', login_h='/login', login_t='Войти', text='', disable='pointer-events: none')
 
 
 @app.route('/about')
@@ -168,9 +168,9 @@ def account():
             session['class'] = False
             return redirect('/')
     if session['admin']:
-        return render_template('admin/admin_account.html', login_h='/account', login_t=session['name'])
+        return render_template('admin/admin_account.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('account.html', login_h='/account', login_t=session['name'])
+        return render_template('account.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     else:
         return redirect('/login')
 
@@ -188,27 +188,51 @@ def new(id):
     for i in data:
         if str(i[0]) == id:
             if session['admin']:
-                return render_template('admin/admin_new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'])
+                return render_template('admin/admin_new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
             if session['login']:
-                return render_template('new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'])
+                return render_template('new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
             else:
-                return render_template('new.html', title=i[1], text=i[2], login_h='/login', login_t='Войти')
+                return render_template('new.html', title=i[1], text=i[2], login_h='/login', login_t='Войти', text2='', disable='pointer-events: none')
         if session['admin']:
-            return render_template('admin/admin_new.html', title='Такой статьи не существует', login_h='/account',login_t=session['name'])
+            return render_template('admin/admin_new.html', title='Такой статьи не существует', login_h='/account',login_t=session['name'], text='Выложить ДЗ', disable='')
         if session['login']:
-            return render_template('new.html', title='Такой статьи не существует', login_h='/account', login_t=session['name'])
+            return render_template('new.html', title='Такой статьи не существует', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
         else:
-            return render_template('new.html', title='Такой статьи не существует', login_h='/login', login_t='Войти')
+            return render_template('new.html', title='Такой статьи не существует', login_h='/login', login_t='Войти', text='', disable='pointer-events: none')
 
 
 @app.route('/table')
 def ed():
-    pass
+    try:
+        if session['login']:
+            pass
+    except:
+        session['login'] = False
+        session['admin'] = False
+        session['class'] = False
+    if session['admin']:
+        return render_template('admin/admin_table.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+    if session['login']:
+        return render_template('table.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+    else:
+        return render_template('not_login/table.html', login_h='/login', login_t='Войти')
 
 
 @app.route('/table/add')
 def add_ed():
-    pass
+    try:
+        if session['login']:
+            pass
+    except:
+        session['login'] = False
+        session['admin'] = False
+        session['class'] = False
+    if session['admin']:
+        return render_template('admin/admin_tadd.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+    if session['login']:
+        return render_template('tadd.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+    else:
+        return render_template('not_login/tadd.html', login_h='/login', login_t='Войти')
 
 
 

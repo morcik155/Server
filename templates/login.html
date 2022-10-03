@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-    <title></title>
+    <title>Войти</title>
 </head>
 <body>
 <div class="topnav">
@@ -13,6 +13,7 @@
     <a class="a" href="/news">Новости</a>
     <a class="a" href="/about">О нас</a>
     <a class="b active" href="{{ login_h }}">{{ login_t }}</a>
+    <a class="b" style="{{disable}}" href="/table/add">{{ text }}</a>
 </div>
 <form method="post">
     <input name="login" type="text"><br>
