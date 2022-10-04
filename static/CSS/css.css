@@ -4,14 +4,14 @@
     height: 50px;
     width: 5%;
     left: 45%;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: whitesmoke;
     overflow: hidden;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* Style the links inside the navigation bar */
@@ -22,7 +22,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .topnav a.b {
     float: right;
@@ -31,31 +31,49 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
     background-color: white;
     color: black;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
     background-color: black;
     color: white;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .input {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     border: 3px solid whitesmoke;
     border-radius: 0px;
     align-content: center;
 }
 .url {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     color: black;
     text-decoration: none;
+}
+.table {
+    text-align: center;
+    width: 1200px;
+}
+.table.head {
+    background-color: black;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.table.body {
+    background-color: whitesmoke;
+    color: black;
+    height: 35px;
+    font-size: 18px;
+    font-family: 'Source Sans Pro', sans-serif;
 }

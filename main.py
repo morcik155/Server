@@ -2,12 +2,14 @@ import os
 from flask import Flask, render_template, request, redirect, flash, session
 from werkzeug.utils import secure_filename
 import databese2
+import datetime
 
 databese2.create_table_articles()
 databese2.create_table_accounts()
 databese2.create_table_day('5a', 'test')
 databese2.create_table_day('5b', 'test')
 databese2.create_table_day('6a', 'test')
+databese2.create_table_day('6a', '"03.10.2022"')
 databese2.create_table_day('6b', 'test')
 databese2.create_table_day('7a', 'test')
 databese2.create_table_day('7b', 'test')
@@ -210,10 +212,32 @@ def ed():
         session['login'] = False
         session['admin'] = False
         session['class'] = False
+    data = []
+    d = databese2.read(f'data_{session["class"]}', 'test')
+    d1 = d[0][0][:-8]
+    d2 = d[0][0][6:]
+    d3 = d[0][0][3:-5]
+    date = datetime.datetime(int(d2), int(d3), int(d1))
+    while True:
+        try:
+            dd1 = ''
+            dd2 = ''
+            if len(str(date.day)) == 1:
+                dd1 = '0' + str(date.day)
+            else:
+                dd1 = str(date.day)
+            if len(str(date.month)) == 1:
+                dd2 = '0' + str(date.month)
+            else:
+                dd2 = str(date.month)
+            data.append(databese2.read(f'data_{session["class"]}', f'"{dd1}.{dd2}.{date.year}"'))
+            date = date + 1
+        except:
+            break
     if session['admin']:
-        return render_template('admin/admin_table.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+        return render_template('admin/admin_table.html', data=data, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('table.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+        return render_template('table.html', data=data, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     else:
         return render_template('not_login/table.html', login_h='/login', login_t='Войти')
 
@@ -227,10 +251,14 @@ def add_ed():
         session['login'] = False
         session['admin'] = False
         session['class'] = False
+    f = open('data/timetabels/6a.txt', 'r')
+    tt = f.read()
+    f.close()
+
     if session['admin']:
-        return render_template('admin/admin_tadd.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+        return render_template('admin/admin_tadd.html', data=None, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('tadd.html', data=None, login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+        return render_template('tadd.html', data=None, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     else:
         return render_template('not_login/tadd.html', login_h='/login', login_t='Войти')
 

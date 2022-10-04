@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link href="../static/CSS/css.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <title>Домашнее задание</title>
 </head>
 <body>
@@ -14,5 +17,20 @@
     <a class="b" href="/news/add">Добавить Новость</a>
     <a class="b" style="{{disable}}" href="/table/add">{{ text }}</a>
 </div>
+{% for i in data %}
+<br>
+<table class="table">
+    <tr class="table head">
+        <td>Предмет</td>
+        <td>Домашнее Задание</td>
+    </tr>
+    {% for j in i %}
+    <tr class="table body">
+        <td>{{ j[0] }}</td>
+        <td>{{ j[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endfor %}
 </body>
 </html>
