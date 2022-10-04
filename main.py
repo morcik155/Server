@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, flash, session
 from werkzeug.utils import secure_filename
 import databese2
 import datetime
+import data.timetables
 
 databese2.create_table_articles()
 databese2.create_table_accounts()
@@ -251,10 +252,6 @@ def add_ed():
         session['login'] = False
         session['admin'] = False
         session['class'] = False
-    f = open('data/timetabels/6a.txt', 'r')
-    tt = f.read()
-    f.close()
-
     if session['admin']:
         return render_template('admin/admin_tadd.html', data=None, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     if session['login']:
