@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link href="../static/CSS/css.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>Домашная страница</title>
+</head>
+<body>
+<input type="checkbox" id="side-checkbox" />
+<div class="side-panel url2">
+    <label class="side-button-2" for="side-checkbox">+</label>
+    <div class="side-title">Панель навигации:</div>
+    <a class="url2" href="/">Домашная страница</a><br>
+    <a class="url2" href="/news">Новости</a><br>
+    <a class="url2" href="/table">Домашнее задание</a><br>
+    <a class="url2" href="/about">О нас</a><br>
+    <a class="url2" href="/news/add">Добавить Новость</a><br>
+    <a class="url2" style="{{disable}}" href="/table/add">{{ text }}</a><br>
+    <a class="url2" href="{{ login_h }}">{{ login_t }}</a><br>
+</div>
+<div class="side-button-1-wr">
+    <label class="side-button-1" for="side-checkbox">
+        <div class="side-b side-open">Открыть</div>
+        <div class="side-b side-close">Закрыть</div>
+    </label>
+</div>
+</body>
+</html>

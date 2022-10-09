@@ -55,7 +55,7 @@ def add_article(id, name, text, files):
 
 
 def add_day(subject, text, who_reduct):
-    data('accounts', f"INSERT INTO accounts VALUES ({subject}, {text}, {who_reduct})")
+    data('accounts', f'INSERT INTO accounts VALUES ({subject}, {text}, {who_reduct})')
 
 
 def read(base, table):
@@ -73,6 +73,7 @@ def read(base, table):
 
     except sqlite3.Error as error:
         print("Ошибка при работе с SQLite", error)
+        return False
     finally:
         if sqlite_connection:
             sqlite_connection.close()

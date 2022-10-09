@@ -5,21 +5,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <title>Выложить Домашнее Задание</title>
+    <title>Выложить домашнее задание</title>
 </head>
 <body>
 <div class="topnav">
     <a class="a" href="/">Домашная страница</a>
     <a class="a" href="/news">Новости</a>
-    <a class="active a" href="/table">Домашнее задание</a>
+    <a class="a active" href="/table">Домашнее задание</a>
     <a class="a" href="/about">О нас</a>
     <a class="b" href="{{ login_h }}">{{ login_t }}</a>
-    <a class="b" href="/news/add">Добавить Новость</a>
     <a class="b" style="{{disable}}" href="/table/add">{{ text }}</a>
 </div>
-<form method="post">
-    {%for i in sub %}
-    {% endfor %}
-</form>
 </body>
 </html>

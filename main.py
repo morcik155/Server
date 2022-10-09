@@ -11,6 +11,7 @@ databese2.create_table_day('5a', 'test')
 databese2.create_table_day('5b', 'test')
 databese2.create_table_day('6a', 'test')
 databese2.create_table_day('6a', '"03.10.2022"')
+databese2.create_table_day('6a', '"04.10.2022"')
 databese2.create_table_day('6b', 'test')
 databese2.create_table_day('7a', 'test')
 databese2.create_table_day('7b', 'test')
@@ -23,6 +24,10 @@ app.secret_key = '43758962823456'
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -45,15 +50,25 @@ def main():
                 return redirect('/')
     else:
         if session['admin']:
-            return render_template('admin/admin_home.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+            return render_template('admin/admin_home.html', login_h='/account', login_t=session['name'],
+                                   text='Выложить ДЗ', disable='')
+            # return render_template('mobile/admin/admin_home.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
         if session['login']:
-            return render_template('home.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+            return render_template('home.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ',
+                                   disable='')
         else:
-            return render_template('home.html', login_h='/login', login_t='Войти', text='', disable='pointer-events: none')
+            return render_template('home.html', login_h='/login', login_t='Войти', text='',
+                                   disable='pointer-events: none')
+    # else:
+    #     return render_template('mobile/admin/admin_home.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             return redirect('/')
@@ -82,6 +97,10 @@ def login():
 
 @app.route('/news', methods=['GET', 'POST'])
 def news():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -91,15 +110,22 @@ def news():
         session['class'] = False
     data = databese2.read('articles', 'articles')
     if session['admin']:
-        return render_template('admin/admin_news.html', login_h='/account', login_t=session['name'], data=data, text='Выложить ДЗ', disable='')
+        return render_template('admin/admin_news.html', login_h='/account', login_t=session['name'], data=data,
+                               text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('news.html', login_h='/account', login_t=session['name'], data=data, text='Выложить ДЗ', disable='')
+        return render_template('news.html', login_h='/account', login_t=session['name'], data=data, text='Выложить ДЗ',
+                               disable='')
     else:
-        return render_template('news.html', login_h='/login', login_t='Войти', data=data, text='', disable='pointer-events: none')
+        return render_template('news.html', login_h='/login', login_t='Войти', data=data, text='',
+                               disable='pointer-events: none')
 
 
 @app.route('/news/add', methods=['GET', 'POST'])
 def add_news():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -129,7 +155,8 @@ def add_news():
         databese2.add_article(t, title, text, '1')
         print(title, title, filenames)
     if session['admin']:
-        return render_template('admin/admin_add.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('admin/admin_add.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ',
+                               disable='')
     if session['login']:
         return render_template('add.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     else:
@@ -138,6 +165,10 @@ def add_news():
 
 @app.route('/about')
 def about():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -146,15 +177,21 @@ def about():
         session['admin'] = False
         session['class'] = False
     if session['admin']:
-        return render_template('admin/admin_about.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('admin/admin_about.html', login_h='/account', login_t=session['name'],
+                               text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('about.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('about.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ',
+                               disable='')
     else:
         return render_template('about.html', login_h='/login', login_t='Войти', text='', disable='pointer-events: none')
 
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -171,15 +208,21 @@ def account():
             session['class'] = False
             return redirect('/')
     if session['admin']:
-        return render_template('admin/admin_account.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('admin/admin_account.html', login_h='/account', login_t=session['name'],
+                               text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('account.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('account.html', login_h='/account', login_t=session['name'], text='Выложить ДЗ',
+                               disable='')
     else:
         return redirect('/login')
 
 
 @app.route('/news/<string:id>')
 def new(id):
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     data = databese2.read('articles', 'articles')
     try:
         if session['login']:
@@ -191,21 +234,31 @@ def new(id):
     for i in data:
         if str(i[0]) == id:
             if session['admin']:
-                return render_template('admin/admin_new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+                return render_template('admin/admin_new.html', title=i[1], text=i[2], login_h='/account',
+                                       login_t=session['name'], text2='Выложить ДЗ', disable='')
             if session['login']:
-                return render_template('new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'], text2='Выложить ДЗ', disable='')
+                return render_template('new.html', title=i[1], text=i[2], login_h='/account', login_t=session['name'],
+                                       text2='Выложить ДЗ', disable='')
             else:
-                return render_template('new.html', title=i[1], text=i[2], login_h='/login', login_t='Войти', text2='', disable='pointer-events: none')
+                return render_template('new.html', title=i[1], text=i[2], login_h='/login', login_t='Войти', text2='',
+                                       disable='pointer-events: none')
         if session['admin']:
-            return render_template('admin/admin_new.html', title='Такой статьи не существует', login_h='/account',login_t=session['name'], text='Выложить ДЗ', disable='')
+            return render_template('admin/admin_new.html', title='Такой статьи не существует', login_h='/account',
+                                   login_t=session['name'], text='Выложить ДЗ', disable='')
         if session['login']:
-            return render_template('new.html', title='Такой статьи не существует', login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+            return render_template('new.html', title='Такой статьи не существует', login_h='/account',
+                                   login_t=session['name'], text='Выложить ДЗ', disable='')
         else:
-            return render_template('new.html', title='Такой статьи не существует', login_h='/login', login_t='Войти', text='', disable='pointer-events: none')
+            return render_template('new.html', title='Такой статьи не существует', login_h='/login', login_t='Войти',
+                                   text='', disable='pointer-events: none')
 
 
 @app.route('/table')
 def ed():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -213,38 +266,47 @@ def ed():
         session['login'] = False
         session['admin'] = False
         session['class'] = False
-    data = []
-    d = databese2.read(f'data_{session["class"]}', 'test')
-    d1 = d[0][0][:-8]
-    d2 = d[0][0][6:]
-    d3 = d[0][0][3:-5]
-    date = datetime.datetime(int(d2), int(d3), int(d1))
-    while True:
-        try:
-            dd1 = ''
-            dd2 = ''
-            if len(str(date.day)) == 1:
-                dd1 = '0' + str(date.day)
-            else:
-                dd1 = str(date.day)
-            if len(str(date.month)) == 1:
-                dd2 = '0' + str(date.month)
-            else:
-                dd2 = str(date.month)
-            data.append(databese2.read(f'data_{session["class"]}', f'"{dd1}.{dd2}.{date.year}"'))
-            date = date + 1
-        except:
-            break
-    if session['admin']:
-        return render_template('admin/admin_table.html', data=data, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('table.html', data=data, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        data = []
+        d = databese2.read(f'data_{session["class"]}', 'test')
+        d1 = d[0][0][:-8]
+        d2 = d[0][0][6:]
+        d3 = d[0][0][3:-5]
+        date = datetime.datetime(int(d2), int(d3), int(d1))
+        while True:
+            try:
+                dd1 = ''
+                dd2 = ''
+                if len(str(date.day)) == 1:
+                    dd1 = '0' + str(date.day)
+                else:
+                    dd1 = str(date.day)
+                if len(str(date.month)) == 1:
+                    dd2 = '0' + str(date.month)
+                else:
+                    dd2 = str(date.month)
+                data.append(databese2.read(f'data_{session["class"]}', f'"{dd1}.{dd2}.{date.year}"'))
+                if databese2.read(f'data_{session["class"]}', f'"{dd1}.{dd2}.{date.year}"'):
+                    break
+            except:
+                break
+        print(data, date, datetime.date.today())
+    if session['admin']:
+        return render_template('admin/admin_table.html', data=data, login_h='/account', login_t=session['name'],
+                               text='Выложить ДЗ', disable='')
+    if session['login']:
+        return render_template('table.html', data=data, login_h='/account', login_t=session['name'], text='Выложить ДЗ',
+                               disable='')
     else:
         return render_template('not_login/table.html', login_h='/login', login_t='Войти')
 
 
 @app.route('/table/add')
 def add_ed():
+    agent = request.headers.get('User-Agent')
+    mobile = False
+    if 'iphone' in agent.lower() or 'android' in agent.lower() or 'blackberry' in agent.lower():
+        mobile = True
     try:
         if session['login']:
             pass
@@ -252,14 +314,19 @@ def add_ed():
         session['login'] = False
         session['admin'] = False
         session['class'] = False
+    if request.method == 'POST':
+        if session['login']:
+            pass
+        else:
+            pass
     if session['admin']:
-        return render_template('admin/admin_tadd.html', data=None, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('admin/admin_tadd.html', data=None, login_h='/account', login_t=session['name'],
+                               text='Выложить ДЗ', disable='')
     if session['login']:
-        return render_template('tadd.html', data=None, login_h='/account', login_t=session['name'], text='Выложить ДЗ', disable='')
+        return render_template('tadd.html', data=None, login_h='/account', login_t=session['name'], text='Выложить ДЗ',
+                               disable='')
     else:
         return render_template('not_login/tadd.html', login_h='/login', login_t='Войти')
-
-
 
 
 if __name__ == '__main__':
